@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.00)
 
-project(Blink)
+project(EFM-Blink)
 
 # Select linker script
 set(LINKER_SCRIPT "device/efm32g.ld")

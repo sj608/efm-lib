@@ -1,0 +1,1 @@
+-g3 -gdwarf-2 -mcpu=cortex-m3 -mthumb -T "${BuildArtifactFileBaseName}.ld" --specs=nosys.specs -Xlinker --gc-sections -Xlinker -Map="${BuildArtifactFileBaseName}.map" --specs=nano.specs
