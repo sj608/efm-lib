@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.00)
 project(EFM-Blink)
 
 # Select linker script
-set(LINKER_SCRIPT "device/efm32g.ld")
+set(LINKER_SCRIPT "src/device/efm32g.ld")
 # Select CPU options
 set(CPU_OPTIONS -mcpu=cortex-m3 -mthumb)
 # optimizations (-O0 -O1 -O2 -O3 -Os -Ofast -Og -flto)

@@ -6,7 +6,7 @@ This repository is my personal project to build a custom build system for EFM MC
 
 Cross-compiling setting is configured by invoking the following cmake command
 ```
-cmake -DCMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi.cmake
+cmake -B build -D CMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi.cmake
 ```
 
 ## Reference
