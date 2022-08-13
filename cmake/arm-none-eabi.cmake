@@ -6,6 +6,8 @@
 #################
 set(CMAKE_SYSTEM_NAME Generic) # Name of the operating system for which CMake to build
 set(CMAKE_SYSTEM_PROCESSOR arm) # Name of the system processor
+set(ARM_TOOLCHAIN_DIR "/usr/local/gcc_arm/ARM/bin/") # set arm toolchain directory path
+set(BINUTILS_PATH ${ARM_TOOLCHAIN_DIR}) # set binary utility directory path
 
 ####################
 # Toolchain Config #
@@ -20,3 +22,8 @@ set(SIZE                arm-none-eabi-size)
 
 set(CMAKE_C_COMPILER_ID GNU)
 set(CMAKE_CXX_COMPILER_ID GNU)
+
+set(CMAKE_FIND_ROOT_PATH ${BINUTILS_PATH})
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)

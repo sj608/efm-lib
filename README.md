@@ -3,6 +3,11 @@
 This repository is my personal project to build a custom build system for EFM MCU family
 
 ## Build Steps
+Edit Bin util and arm toolchain directory path for the host platform inside cmake/arm-none-eabi.cmake
+```
+set(ARM_TOOLCHAIN_DIR "path/to/binutil/") # set arm toolchain directory path
+set(BINUTILS_PATH ${ARM_TOOLCHAIN_DIR}) # set binary utility directory path
+```
 
 Cross-compiling setting is configured by invoking the following cmake command
 ```
