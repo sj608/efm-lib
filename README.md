@@ -15,7 +15,9 @@ cmake -B build -D CMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi.cmake
 ```
 
 ## Reference
-Example gibut repo is [here](https://github.com/cortexm/baremetal)
+Example github repo 1 is [here](https://github.com/cortexm/baremetal)
+
+Example github repo 2 is [here](https://mcuoneclipse.com/2021/05/04/visual-studio-code-for-c-c-with-arm-cortex-m-part-2/)
 
 CMake Referecnce is [here](https://cmake.org/cmake/help/latest/manual/cmake.1.html#introduction-to-cmake-buildsystems)
 
