@@ -61,3 +61,15 @@ add_compile_options(
     -ffunction-sections
     -fdata-sections
 )
+
+# Linker options
+target_link_options(${EXECUTABLE} PRIVATE
+        -T${LINKER_SCRIPT}
+        ${CPU_OPTIONS}
+        -specs=nosys.specs
+        -Xlinker
+        -gc-sections
+        -Xlinker
+        -Map=
+
+)
