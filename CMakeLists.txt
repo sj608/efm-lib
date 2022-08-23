@@ -6,7 +6,7 @@ project(EFM-Blink)
 
 set(EXECUTABLE ${PROJECT_NAME}.elf)
 # Select linker script
-set(LINKER_SCRIPT "src/device/efm32g.ld")
+set(LINKER_SCRIPT "../device/efm32g.ld")
 # Select CPU options
 
 enable_language(C ASM)
@@ -27,8 +27,8 @@ set(SRC_FILES
         emlib/src/em_gpio.c
         emlib/src/em_system.c
 
-        device/startup_efm32g.c
-        device/system_efm32g.c
+        device/startup/startup_efm32g.c
+        device/system/system_efm32g.c
 )
 
 # Build the executable based on the source files
@@ -36,15 +36,18 @@ add_executable(${EXECUTABLE} ${SRC_FILES})
 
 # List of compiler defines, prefix with -D compiler option
 target_compile_definitions(${EXECUTABLE} PRIVATE
-        -DEFM32G230F64=1
+        -DEFM32G890F128=1
         -DFTX_900=1
         )
 
 # List of includ directories
 target_include_directories(${EXECUTABLE} PRIVATE
         src 
-        emlib
+        emlib/inc
+        device/system
+        device/inc
         device
+        CMSIS
         )
 
 add_compile_options(
@@ -70,6 +73,12 @@ target_link_options(${EXECUTABLE} PRIVATE
         -Xlinker
         -gc-sections
         -Xlinker
-        -Map=
+        -Wl,-Map=${PROJECT_NAME}.map
 
 )
+
+#optional: Print executable size as a part of post build process
+add_custom_command(TARGET ${EXECUTABLE}
+        POST_BUILD
+        COMMAND ${CMAKE_SIZE_UTIL} ${EXECUTABLE})
+

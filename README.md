@@ -17,6 +17,10 @@ cmake -B build -D CMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi.cmake
 ## Linker Options
 `-specs` options uses spec file specified by the string the spec files are inside the ARM lib folder `/usr/local/gcc_arm/ARM/arm-none-eabi/lib`
 
+`-Map=${PROJECT_NAME}.map` this option requires `-Wl,` in front of it.
+
+The issue regarding re-declaration of type is resolved by downgrading the CMSIS pack from 5-5.9.0 to 4.5.0
+
 ## Reference
 Example github repo 1 is [here](https://github.com/cortexm/baremetal)
 
