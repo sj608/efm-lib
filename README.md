@@ -37,6 +37,8 @@ Example github repo 1 is [here](https://github.com/cortexm/baremetal)
 
 Example github repo 2 is [here](https://mcuoneclipse.com/2021/05/04/visual-studio-code-for-c-c-with-arm-cortex-m-part-2/)
 
+Good reference is [here](https://dev.to/younup/cmake-on-stm32-the-beginning-3766)
+
 CMake Referecnce is [here](https://cmake.org/cmake/help/latest/manual/cmake.1.html#introduction-to-cmake-buildsystems)
 
 Adding arm-none-eabi-gcc package to path [here](https://gist.github.com/joegoggins/7763637)
@@ -44,3 +46,5 @@ Adding arm-none-eabi-gcc package to path [here](https://gist.github.com/joegoggi
 CMake Project Structure is [here](https://github.com/embeddedartistry/cmake-project-skeleton)
 
 GCC-GNU [compiler](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html) and [linker](https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html) options
+
+Uploading Through J-Link steps [here](https://community.silabs.com/s/article/using-jlink-commander-to-program-flash?language=en_US)
