@@ -21,14 +21,14 @@ set(CMAKE_C_FLAGS_RELEASE "-Os -flto")
 
 #List of source files
 set(SRC_FILES 
-        src/main.c
-
+        device/startup/startup_efm32g.c
+        device/system/system_efm32g.c
+        
         emlib/src/em_cmu.c
         emlib/src/em_gpio.c
         emlib/src/em_system.c
 
-        device/startup/startup_efm32g.c
-        device/system/system_efm32g.c
+        src/main.c
 )
 
 # Build the executable based on the source files
@@ -42,12 +42,12 @@ target_compile_definitions(${EXECUTABLE} PRIVATE
 
 # List of includ directories
 target_include_directories(${EXECUTABLE} PRIVATE
+        device/system/
+        device/
+        device/inc/
+        CMSIS/
+        emlib/inc/
         src 
-        emlib/inc
-        device/system
-        device/inc
-        device
-        CMSIS
         )
 
 add_compile_options(
@@ -82,3 +82,9 @@ add_custom_command(TARGET ${EXECUTABLE}
         POST_BUILD
         COMMAND ${CMAKE_SIZE_UTIL} ${EXECUTABLE})
 
+# Optional: Create hex, bin and S-Record files after the build
+add_custom_command(TARGET ${EXECUTABLE}
+        POST_BUILD
+        COMMAND ${CMAKE_OBJCOPY} -O srec --srec-len=64 ${EXECUTABLE} ${PROJECT_NAME}.s19
+        COMMAND ${CMAKE_OBJCOPY} -O ihex ${EXECUTABLE} ${PROJECT_NAME}.hex
+        COMMAND ${CMAKE_OBJCOPY} -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin)

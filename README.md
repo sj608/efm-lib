@@ -13,6 +13,17 @@ Cross-compiling setting is configured by invoking the following cmake command
 ```
 cmake -B build -D CMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi.cmake
 ```
+Included following lines to suppress error regarding compiler configs
+```
+SET (CMAKE_C_COMPILER_WORKS 1)
+SET (CMAKE_CXX_COMPILER_WORKS 1)
+```
+
+To build
+```
+cd build
+cmake --build .
+```
 
 ## Linker Options
 `-specs` options uses spec file specified by the string the spec files are inside the ARM lib folder `/usr/local/gcc_arm/ARM/arm-none-eabi/lib`
