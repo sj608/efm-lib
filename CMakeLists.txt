@@ -4,7 +4,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 project(EFM-Blink)
 
-set(EXECUTABLE ${PROJECT_NAME}.elf)
+set(EXECUTABLE ${PROJECT_NAME}.axf)
 # Select linker script
 set(LINKER_SCRIPT "../device/efm32g.ld")
 # Select CPU options
@@ -37,7 +37,6 @@ add_executable(${EXECUTABLE} ${SRC_FILES})
 # List of compiler defines, prefix with -D compiler option
 target_compile_definitions(${EXECUTABLE} PRIVATE
         -DEFM32G890F128=1
-        -DFTX_900=1
         )
 
 # List of includ directories
@@ -50,7 +49,7 @@ target_include_directories(${EXECUTABLE} PRIVATE
         src 
         )
 
-add_compile_options(
+target_compile_options( ${EXECUTABLE} PRIVATE
     ${CPU_OPTIONS}
     ${CMAKE_C_FLAGS_DEBUG}
     $<$<COMPILE_LANGUAGE:C>:-std=c99>
@@ -74,9 +73,14 @@ target_link_options(${EXECUTABLE} PRIVATE
         -Xlinker
         -gc-sections
         -Xlinker
+        --specs=nano.specs
         -Wl,-Map=${PROJECT_NAME}.map
         -Wl,--print-memory-usage
-
+        -Wl,--start-group
+        -lgcc 
+        -lc 
+        -lnosys 
+        -Wl,--end-group
 )
 
 #optional: Print executable size as a part of post build process

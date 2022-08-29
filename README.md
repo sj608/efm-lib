@@ -32,6 +32,16 @@ cmake --build .
 
 The issue regarding re-declaration of type is resolved by downgrading the CMSIS pack from 5-5.9.0 to 4.5.0
 
+## JLinkEXE
+Programming flow command steps
+```
+connect
+erase
+loadbin /directory/to/binfile
+r  - means reset
+g  - means go
+```
+
 ## Reference
 Example github repo 1 is [here](https://github.com/cortexm/baremetal)
 

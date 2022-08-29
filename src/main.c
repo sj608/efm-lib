@@ -26,13 +26,13 @@ int main (void)
         while(1);
     }
 
-    GPIO_PinModeSet(gpioPortC, 0, gpioModePushPull, 0);
+    GPIO_PinModeSet(gpioPortC, 2, gpioModePushPull, 0);
 
     while(1){
-        GPIO_PinOutClear(gpioPortC, 0);
-        Delay(1000);
-        GPIO_PinOutSet(gpioPortC, 0);
-        Delay(1000);
+        GPIO_PinOutClear(gpioPortC, 2);
+        Delay(500);
+        GPIO_PinOutSet(gpioPortC, 2);
+        Delay(500);
     }
 
 }
