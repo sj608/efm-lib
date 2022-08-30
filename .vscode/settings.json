@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "em_cmu.h": "c",
-        "em_chip.h": "c"
+        "em_chip.h": "c",
+        "em_device.h": "c",
+        "em_gpio.h": "c"
     }
 }
