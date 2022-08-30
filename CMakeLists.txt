@@ -7,6 +7,7 @@ project(EFM-Blink)
 set(EXECUTABLE ${PROJECT_NAME}.axf)
 # Select linker script
 set(LINKER_SCRIPT "../device/efm32g.ld")
+
 # Select CPU options
 
 enable_language(C ASM)
