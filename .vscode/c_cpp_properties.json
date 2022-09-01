@@ -3,7 +3,7 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/emlib/inc/**", "${workspaceFolder}/device/"
+                "${workspaceFolder}/emlib/inc/**", "${workspaceFolder}/device/**"
             ],
             "defines": ["EFM32G890F128"],
             "macFrameworkPath": [
