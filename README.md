@@ -37,7 +37,7 @@ Programming flow command steps
 ```
 connect
 erase
-loadbin /directory/to/binfile
+loadbin /directory/to/binfile ...... /Users/sj/Documents/projects/efm-blink/build/EFM-Blink.bin 0
 r  - means reset
 g  - means go
 ```

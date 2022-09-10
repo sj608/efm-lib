@@ -27,6 +27,7 @@ set(SRC_FILES
         
         emlib/src/em_cmu.c
         emlib/src/em_gpio.c
+        emlib/src/em_usart.c
         emlib/src/em_system.c
 
         src/main.c

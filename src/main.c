@@ -5,8 +5,9 @@
 #include "em_usart.h"
 
 volatile uint32_t msTicks = 0;
-char target_string[] = 'hello world\n';
-const uint8_t str_size = sizeof(target_string) / sizeof(char)
+char target_string[] = "hello world\n";
+const uint8_t str_size = sizeof(target_string) / sizeof(char);
+USART_TypeDef *usart = USART2;
 
 void SysTick_Handler(void)
 {
@@ -34,13 +35,13 @@ int main (void)
     }
 
     serial_init();
-    GPIO_PinModeSet(gpioPortC, 2, gpioModePushPull, 0);
+    GPIO_PinModeSet(gpioPortC, 0, gpioModePushPull, 0);
 
     while(1){
         send_string();
-        GPIO_PinOutClear(gpioPortC, 2);
+        GPIO_PinOutClear(gpioPortC, 0);
         Delay(500);
-        GPIO_PinOutSet(gpioPortC, 2);
+        GPIO_PinOutSet(gpioPortC, 0);
         Delay(500);
     }
 
@@ -48,8 +49,7 @@ int main (void)
 
 void serial_init()
 {
-    USART_InitSync_TypeDef init_async = USART_INITASYNC_DEFAULT;
-    USART_TypeDef *usart = USART2;
+    USART_InitAsync_TypeDef init_async = USART_INITASYNC_DEFAULT;
 
 	// Prepare struct for initializing UART in asynchronous mode
 	init_async.enable       = usartDisable;   // Don't enable UART upon intialization
@@ -81,13 +81,13 @@ void serial_init()
 
 void send_string(void)
 {
-    static uint8_t indx = 0;
-    for(uint8_t i = 0; i < str_size; i++)
-    {
-        while(usart->STATUS & USART_STATUS_TXBL);
-        usart->TXDATA = target_string[i];
-        while(usart->STATUS & USART_STATUS_TXC);
-    }
+    // for(uint8_t i = 0; i < str_size; i++)
+    // {
+    //     while(usart->STATUS & USART_STATUS_TXBL);
+    //     usart->TXDATA = target_string[i];
+    //     while(usart->STATUS & USART_STATUS_TXC);
+    // }
+    USART_Tx(usart, 'a');
 }
 
 // void USART2_TX_IRQHandler(void)
