@@ -63,16 +63,16 @@ void serial_init()
     USART_InitAsync(usart, &init_async);
 
 	// Prepare UART Rx and Tx interrupts
-	// USART_IntClear(usart, _USART_IF_MASK);
-	// USART_IntEnable(usart, USART_IF_RXDATAV);
+	USART_IntClear(usart, _USART_IF_MASK);
+	USART_IntEnable(usart, USART_IF_RXDATAV);
 
-	// NVIC_ClearPendingIRQ(USART1_RX_IRQn);
-	// NVIC_ClearPendingIRQ(USART1_TX_IRQn);
-	// NVIC_EnableIRQ(USART1_RX_IRQn);
-	// NVIC_EnableIRQ(USART1_TX_IRQn);
+	NVIC_ClearPendingIRQ(USART2_RX_IRQn);
+	NVIC_ClearPendingIRQ(USART2_TX_IRQn);
+	NVIC_EnableIRQ(USART2_RX_IRQn);
+	NVIC_EnableIRQ(USART2_TX_IRQn);
 
-	// NVIC_SetPriority(USART1_RX_IRQn, 0);
-	// NVIC_SetPriority(USART1_TX_IRQn, 0);
+	NVIC_SetPriority(USART2_RX_IRQn, 0);
+	NVIC_SetPriority(USART2_TX_IRQn, 0);
 
     usart->ROUTE = USART_ROUTE_RXPEN | USART_ROUTE_TXPEN | _USART_ROUTE_LOCATION_LOC0;
 
