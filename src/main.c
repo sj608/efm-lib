@@ -5,8 +5,10 @@
 #include "em_usart.h"
 
 volatile uint32_t msTicks = 0;
-char target_string[] = "hello world\n";
-const uint8_t str_size = sizeof(target_string) / sizeof(char);
+volatile char rx_char = 0;
+
+char string_1[] = "Hi\n";
+char string_2[] = "Waiting\n";
 USART_TypeDef *usart = USART2;
 
 void SysTick_Handler(void)
@@ -22,7 +24,7 @@ void Delay(uint32_t dlyTicks)
 }
 
 void serial_init();
-void send_string(void);
+void send_string(char* tx_buff, uint8_t buff_len);
 
 int main (void)
 {
@@ -38,11 +40,15 @@ int main (void)
     GPIO_PinModeSet(gpioPortC, 0, gpioModePushPull, 0);
 
     while(1){
-        send_string();
         GPIO_PinOutClear(gpioPortC, 0);
         Delay(500);
         GPIO_PinOutSet(gpioPortC, 0);
         Delay(500);
+        if(rx_char == 'a'){
+            send_string(string_1, (uint8_t)(sizeof(string_1)/sizeof(string_1[0])));
+        }else{
+            send_string(string_2, (uint8_t)(sizeof(string_2)/sizeof(string_2[0])));
+        }
     }
 
 }
@@ -67,27 +73,16 @@ void serial_init()
 	USART_IntEnable(usart, USART_IF_RXDATAV);
 
 	NVIC_ClearPendingIRQ(USART2_RX_IRQn);
-	NVIC_ClearPendingIRQ(USART2_TX_IRQn);
+	// NVIC_ClearPendingIRQ(USART2_TX_IRQn);
 	NVIC_EnableIRQ(USART2_RX_IRQn);
-	NVIC_EnableIRQ(USART2_TX_IRQn);
+	// NVIC_EnableIRQ(USART2_TX_IRQn);
 
 	NVIC_SetPriority(USART2_RX_IRQn, 0);
-	NVIC_SetPriority(USART2_TX_IRQn, 0);
+	// NVIC_SetPriority(USART2_TX_IRQn, 0);
 
     usart->ROUTE = USART_ROUTE_RXPEN | USART_ROUTE_TXPEN | _USART_ROUTE_LOCATION_LOC0;
 
     USART_Enable(usart, usartEnable);
-}
-
-void send_string(void)
-{
-    // for(uint8_t i = 0; i < str_size; i++)
-    // {
-    //     while(usart->STATUS & USART_STATUS_TXBL);
-    //     usart->TXDATA = target_string[i];
-    //     while(usart->STATUS & USART_STATUS_TXC);
-    // }
-    USART_Tx(usart, 'a');
 }
 
 // void USART2_TX_IRQHandler(void)
@@ -99,7 +94,17 @@ void send_string(void)
 
 // }
 
-// void USART0_RX_IRQHandler(void)
-// {
+void USART0_RX_IRQHandler(void)
+{
+    if((usart->STATUS & USART_STATUS_RXDATAV) && (usart->IF & USART_IF_RXDATAV))
+    {
+        rx_char = USART_RxDataGet(usart);
+    }
+}
 
-// }
+void send_string(char* tx_buff, uint8_t buff_len)
+{
+    for (uint8_t i = 0; i<buff_len; i++){
+        USART_Tx(usart, *(tx_buff+i));
+    }
+}
