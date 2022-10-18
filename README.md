@@ -42,6 +42,9 @@ r  - means reset
 g  - means go
 ```
 
+## GDB debugger
+
+
 ## Reference
 Example github repo 1 is [here](https://github.com/cortexm/baremetal)
 
@@ -58,3 +61,7 @@ CMake Project Structure is [here](https://github.com/embeddedartistry/cmake-proj
 GCC-GNU [compiler](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html) and [linker](https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html) options
 
 Uploading Through J-Link steps [here](https://community.silabs.com/s/article/using-jlink-commander-to-program-flash?language=en_US)
+
+GDB setup [interrupt-blog](https://interrupt.memfault.com/blog/gdb-for-firmware-1)
+
+GDBGUI browser frontend [here](https://www.gdbgui.com/guides/)
