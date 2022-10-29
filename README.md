@@ -43,7 +43,12 @@ g  - means go
 ```
 
 ## GDB debugger
-
+Steps to running debugging environment
+1. open two terminal
+2. Run JLinkGDBServerCL -device EFM32G890F128
+3. On another terminal arm-none-eabi-gdb
+   - target remote localhost:portnumber/shown/on/JLinkGDBServerCL
+   - load, this programs the target and starts from the reset_handler
 
 ## Reference
 Example github repo 1 is [here](https://github.com/cortexm/baremetal)
