@@ -37,10 +37,18 @@ Programming flow command steps
 ```
 connect
 erase
-loadbin /directory/to/binfile
+loadbin /directory/to/binfile ...... /Users/sj/Documents/projects/efm-blink/build/EFM-Blink.bin 0
 r  - means reset
 g  - means go
 ```
+
+## GDB debugger
+Steps to running debugging environment
+1. open two terminal
+2. Run JLinkGDBServerCL -device EFM32G890F128
+3. On another terminal arm-none-eabi-gdb
+   - target remote localhost:portnumber/shown/on/JLinkGDBServerCL
+   - load, this programs the target and starts from the reset_handler
 
 ## Reference
 Example github repo 1 is [here](https://github.com/cortexm/baremetal)
@@ -58,3 +66,7 @@ CMake Project Structure is [here](https://github.com/embeddedartistry/cmake-proj
 GCC-GNU [compiler](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html) and [linker](https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html) options
 
 Uploading Through J-Link steps [here](https://community.silabs.com/s/article/using-jlink-commander-to-program-flash?language=en_US)
+
+GDB setup [interrupt-blog](https://interrupt.memfault.com/blog/gdb-for-firmware-1)
+
+GDBGUI browser frontend [here](https://www.gdbgui.com/guides/)

@@ -17,7 +17,7 @@ set(CMAKE_C_EXTENSIONS OFF)
 
 set(CPU_OPTIONS -mcpu=cortex-m3 -mthumb)
 # optimizations (-O0 -O1 -O2 -O3 -Os -Ofast -Og -flto)
-set(CMAKE_C_FLAGS_DEBUG -g3 -gdwarf-2)
+set(CMAKE_C_FLAGS_DEBUG -O0 -g3 -gdwarf-2)
 set(CMAKE_C_FLAGS_RELEASE "-Os -flto")
 
 #List of source files
@@ -27,6 +27,7 @@ set(SRC_FILES
         
         emlib/src/em_cmu.c
         emlib/src/em_gpio.c
+        emlib/src/em_usart.c
         emlib/src/em_system.c
 
         src/main.c
@@ -55,7 +56,6 @@ target_compile_options( ${EXECUTABLE} PRIVATE
     ${CMAKE_C_FLAGS_DEBUG}
     $<$<COMPILE_LANGUAGE:C>:-std=c99>
 
-    -O0
     -Wall
     -Wextra
     -c
