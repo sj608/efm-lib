@@ -55,6 +55,9 @@ int main (void)
 
 void serial_init()
 {
+    GPIO_PinModeSet(gpioPortC, 2, gpioModePushPull, 1);
+    GPIO_PinModeSet(gpioPortC, 3, gpioModeInput, 0);
+
     USART_InitAsync_TypeDef init_async = USART_INITASYNC_DEFAULT;
 
 	// Prepare struct for initializing UART in asynchronous mode
@@ -94,11 +97,12 @@ void serial_init()
 
 // }
 
-void USART0_RX_IRQHandler(void)
+void USART2_RX_IRQHandler(void)
 {
-    if((usart->STATUS & USART_STATUS_RXDATAV) && (usart->IF & USART_IF_RXDATAV))
+    USART_IntClear(usart, USART_IF_RXDATAV);
     {
-        rx_char = USART_RxDataGet(usart);
+        rx_char = USART_Rx(usart);
+
     }
 }
 
