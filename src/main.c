@@ -7,8 +7,8 @@
 volatile uint32_t msTicks = 0;
 volatile char rx_char = 0;
 
-char string_1[] = "Hi\n";
-char string_2[] = "Waiting\n";
+char string_1[] = "Hi\r\n";
+char string_2[] = "Waiting\r\n";
 USART_TypeDef *usart = USART2;
 
 void SysTick_Handler(void)
@@ -46,6 +46,7 @@ int main (void)
         Delay(500);
         if(rx_char == 'a'){
             send_string(string_1, (uint8_t)(sizeof(string_1)/sizeof(string_1[0])));
+            rx_char = 0;
         }else{
             send_string(string_2, (uint8_t)(sizeof(string_2)/sizeof(string_2[0])));
         }
