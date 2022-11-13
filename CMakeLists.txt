@@ -31,6 +31,7 @@ set(SRC_FILES
         emlib/src/em_system.c
 
         src/flash/flash.c
+        src/serial/serial.c
         src/main.c
 )
 
@@ -49,7 +50,9 @@ target_include_directories(${EXECUTABLE} PRIVATE
         device/inc/
         CMSIS/
         emlib/inc/
-        src 
+        src/serial/
+        src/flash/
+        src
         )
 
 target_compile_options( ${EXECUTABLE} PRIVATE

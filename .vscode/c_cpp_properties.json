@@ -6,7 +6,7 @@
                 "${workspaceFolder}/emlib/inc/**",
                 "${workspaceFolder}/device/**",
                 "${workspaceFolder}/CMSIS/**",
-                "${workspaceFolder}/src/flash/**"
+                "${workspaceFolder}/src/**"
             ],
             "defines": [
                 "EFM32G890F128"
