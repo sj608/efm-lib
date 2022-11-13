@@ -2,8 +2,9 @@
 
 USART_TypeDef *usart = USART2;
 
-static char string_1[] = "Hi\r\n";
-static char string_2[] = "Waiting\r\n";
+static char string_1[] = "Option 1 selected\r\n";
+static char string_2[] = "Option 2 selected\r\n";
+
 
 void serial_init()
 {
@@ -45,6 +46,12 @@ void serial_send_string(char* tx_buff, uint8_t buff_len)
     for (uint8_t i = 0; i<buff_len; i++){
         USART_Tx(usart, *(tx_buff+i));
     }
+}
+
+void welcom_message(void)
+{
+	char welcome_msg[] = "Welcome to bootlaoder\r\n\n Please input option 1~10 \r\n\n";
+	serial_send_string(welcome_msg, (uint8_t)(sizeof(welcome_msg)/(sizeof(welcome_msg[0]))));
 }
 
 void serial_main(volatile char input_c)
