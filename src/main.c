@@ -3,7 +3,6 @@
 #include "em_cmu.h"
 #include "em_gpio.h"
 #include "serial.h"
-#include "flash.h"
 
 volatile uint32_t msTicks = 0;
 volatile char rx_char = 0;

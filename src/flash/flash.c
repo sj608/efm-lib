@@ -33,3 +33,8 @@ uint32_t flash_deinit(void)
     MSC_Deinit();
     return MSC->LOCK;
 }
+
+uint32_t flash_read_address(uint32_t *address)
+{
+    return *address;
+}

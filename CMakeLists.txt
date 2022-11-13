@@ -26,6 +26,7 @@ set(SRC_FILES
         device/system/system_efm32g.c
         
         emlib/src/em_cmu.c
+        emlib/src/em_msc.c
         emlib/src/em_gpio.c
         emlib/src/em_usart.c
         emlib/src/em_system.c
@@ -50,8 +51,8 @@ target_include_directories(${EXECUTABLE} PRIVATE
         device/inc/
         CMSIS/
         emlib/inc/
-        src/serial/
         src/flash/
+        src/serial/
         src
         )
 

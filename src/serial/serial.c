@@ -4,6 +4,7 @@ USART_TypeDef *usart = USART2;
 
 static char string_1[] = "Option 1 selected\r\n";
 static char string_2[] = "Option 2 selected\r\n";
+static char string_3[] = "Option 3 Read memeory\r\n";
 
 
 void serial_init()
@@ -56,11 +57,26 @@ void welcom_message(void)
 
 void serial_main(volatile char input_c)
 {
-	if(input_c == 'a'){
+	if(input_c == '1'){
 	    serial_send_string(string_1, (uint8_t)(sizeof(string_1)/sizeof(string_1[0])));
 	    input_c = 0;
-	}else{
+	}else if (input_c == '2'){
 	    serial_send_string(string_2, (uint8_t)(sizeof(string_2)/sizeof(string_2[0])));
 		input_c = 0;
+		uint32_t *target_addr = FLASH_SIZE - 1;
+		uint32_t data[] = {0x00130021};
+		flash_init();
+		flash_erase_page(target_addr);
+		flash_write(target_addr, &data, sizeof(data));
+		flash_deinit();
+	}else if (input_c == '3'){
+		serial_send_string(string_3, (uint8_t)(sizeof(string_3)/sizeof(string_3[0])));
+		uint32_t mem_content = 0;
+		char data_str[4];
+		mem_content = flash_read_address((uint32_t*)(FLASH_SIZE-1));
+		for(uint8_t i = 0; i<4; i++){
+			data_str[i] = mem_content>>(24-(8*i));
+		}
+		serial_send_string(data_str, (uint8_t)(sizeof(data_str)/sizeof(data_str[0])));
 	}
 }

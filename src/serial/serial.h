@@ -3,6 +3,7 @@
 
 #include "em_gpio.h"
 #include "em_usart.h"
+#include "flash.h"
 
 extern USART_TypeDef *usart;
 
