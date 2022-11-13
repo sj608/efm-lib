@@ -1,6 +1,6 @@
 #include "flash.h"
 
-void flash_init(void)
+uint32_t flash_init(void)
 {
     MSC_Init();
     return MSC->LOCK;
@@ -18,7 +18,7 @@ typedef enum {
 } MSC_Status_TypeDef;
 
 */
-int flash_write(uint32_t *address, const void *data, u_int32_t numBytes)
+int flash_write(uint32_t *address, const void *data, uint32_t numBytes)
 {
     return MSC_WriteWord(address, data, numBytes);
 }
@@ -28,7 +28,7 @@ int flash_erase_page(uint32_t *address)
     return MSC_ErasePage(address);
 }
 
-void flash_deinit(void)
+uint32_t flash_deinit(void)
 {
     MSC_Deinit();
     return MSC->LOCK;

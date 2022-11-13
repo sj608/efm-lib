@@ -30,6 +30,7 @@ set(SRC_FILES
         emlib/src/em_usart.c
         emlib/src/em_system.c
 
+        src/flash/flash.c
         src/main.c
 )
 

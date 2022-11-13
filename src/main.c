@@ -89,15 +89,6 @@ void serial_init()
     USART_Enable(usart, usartEnable);
 }
 
-// void USART2_TX_IRQHandler(void)
-// {
-//     if(usart->STATUS & USART_STATUS_TXBL)
-//     {
-        
-//     }
-
-// }
-
 void USART2_RX_IRQHandler(void)
 {
     USART_IntClear(usart, USART_IF_RXDATAV);
