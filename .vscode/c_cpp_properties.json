@@ -3,9 +3,14 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/emlib/inc/**", "${workspaceFolder}/device/**"
+                "${workspaceFolder}/emlib/inc/**",
+                "${workspaceFolder}/device/**",
+                "${workspaceFolder}/CMSIS/**",
+                "${workspaceFolder}/src/flash/**"
             ],
-            "defines": ["EFM32G890F128"],
+            "defines": [
+                "EFM32G890F128"
+            ],
             "macFrameworkPath": [
                 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
             ],
