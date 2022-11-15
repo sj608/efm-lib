@@ -27,7 +27,7 @@ int main (void)
         Delay(500);
         GPIO_PinOutSet(gpioPortC, 0);
         Delay(500);
-        serial_main(rx_char);
+        serial_main(&rx_char);
     }
 
 }
