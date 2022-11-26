@@ -63,21 +63,28 @@ void serial_main(volatile char *input_c)
 	}else if (*input_c == '2'){
 	    serial_send_string(string_2, (uint8_t)(sizeof(string_2)/sizeof(string_2[0])));
 		*input_c = 0;
-		uint32_t *target_addr = FLASH_SIZE - 1;
+		uint32_t *target_addr = (uint32_t *)0x00001F40;
 		uint32_t data[] = {0x00130021};
-		flash_init();
-		flash_erase_page(target_addr);
-		flash_write(target_addr, &data, sizeof(data));
-		flash_deinit();
-	}else if (*input_c == '3'){
-		*input_c = 0;
-		serial_send_string(string_3, (uint8_t)(sizeof(string_3)/sizeof(string_3[0])));
-		uint32_t mem_content = 0;
-		char data_str[4];
-		mem_content = flash_read_address((uint32_t*)(FLASH_SIZE-1));
-		for(uint8_t i = 0; i<4; i++){
-			data_str[i] = mem_content>>(24-(8*i));
-		}
-		serial_send_string(data_str, (uint8_t)(sizeof(data_str)/sizeof(data_str[0])));
+		// MSC_Init();
+		MSC->LOCK = MSC_UNLOCK_CODE;
+		MSC->WRITECTRL = MSC_WRITECTRL_WREN;
+		MSC_ErasePage(target_addr);
+		MSC_WriteWord(target_addr, data, sizeof(data));
+		MSC_Deinit();
+		// flash_init();
+		// flash_erase_page(target_addr);
+		// flash_write(target_addr, &data, sizeof(data));
+		// flash_deinit();
 	}
+// 	}else if (*input_c == '3'){
+// 		*input_c = 0;
+// 		serial_send_string(string_3, (uint8_t)(sizeof(string_3)/sizeof(string_3[0])));
+// 		uint32_t mem_content = 0;
+// 		char data_str[4];
+// 		mem_content = flash_read_address((uint32_t*)(0x00001500));
+// 		for(uint8_t i = 0; i<4; i++){
+// 			data_str[i] = mem_content>>(24-(8*i));
+// 		}
+// 		serial_send_string(data_str, (uint8_t)(sizeof(data_str)/sizeof(data_str[0])));
+// 	}
 }

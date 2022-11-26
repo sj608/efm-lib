@@ -50,6 +50,10 @@ Steps to running debugging environment
    - target remote localhost:portnumber/shown/on/JLinkGDBServerCL
    - load, this programs the target and starts from the reset_handler
 
+## Memory Layout
+Flash: EFM32G -> 128kB of memory, Page size of 512Bytes
+having trouble writing the value to flash section. Doesn't allow me to write it.
+
 ## Reference
 Example github repo 1 is [here](https://github.com/cortexm/baremetal)
 
