@@ -75,16 +75,15 @@ void serial_main(volatile char *input_c)
 		// flash_erase_page(target_addr);
 		// flash_write(target_addr, &data, sizeof(data));
 		// flash_deinit();
+	}else if (*input_c == '3'){
+		*input_c = 0;
+		serial_send_string(string_3, (uint8_t)(sizeof(string_3)/sizeof(string_3[0])));
+		uint32_t mem_content = 0;
+		char data_str[4];
+		mem_content = flash_read_address((uint32_t*)(0x0FE08000));
+		for(uint8_t i = 0; i<4; i++){
+			data_str[i] = mem_content>>(24-(8*i));
+		}
+		serial_send_string(data_str, (uint8_t)(sizeof(data_str)/sizeof(data_str[0])));
 	}
-// 	}else if (*input_c == '3'){
-// 		*input_c = 0;
-// 		serial_send_string(string_3, (uint8_t)(sizeof(string_3)/sizeof(string_3[0])));
-// 		uint32_t mem_content = 0;
-// 		char data_str[4];
-// 		mem_content = flash_read_address((uint32_t*)(0x00001500));
-// 		for(uint8_t i = 0; i<4; i++){
-// 			data_str[i] = mem_content>>(24-(8*i));
-// 		}
-// 		serial_send_string(data_str, (uint8_t)(sizeof(data_str)/sizeof(data_str[0])));
-// 	}
 }
