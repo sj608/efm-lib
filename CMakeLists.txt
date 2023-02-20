@@ -15,10 +15,10 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
-set(CPU_OPTIONS -mcpu=cortex-m3 -mthumb)
+set(CPU_OPTIONS -g3 -gdwarf-2 -mcpu=cortex-m3 -mthumb)
 # optimizations (-O0 -O1 -O2 -O3 -Os -Ofast -Og -flto)
-set(CMAKE_C_FLAGS_DEBUG -O0 -g3 -gdwarf-2)
-set(CMAKE_C_FLAGS_RELEASE "-Os -flto")
+set(CMAKE_C_FLAGS_DEBUG -Og)
+# set(CMAKE_C_FLAGS_RELEASE "-Os -flto")
 
 #List of source files
 set(SRC_FILES 

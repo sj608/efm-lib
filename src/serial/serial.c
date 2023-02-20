@@ -5,6 +5,8 @@ USART_TypeDef *usart = USART2;
 static char string_1[] = "Option 1 selected\r\n";
 static char string_2[] = "Option 2 selected\r\n";
 
+int dummy_int;
+
 
 void serial_init()
 {

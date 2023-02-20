@@ -4,6 +4,10 @@
         "em_chip.h": "c",
         "em_device.h": "c",
         "em_gpio.h": "c",
-        "em_msc.h": "c"
+        "em_msc.h": "c",
+        "serial.h": "c",
+        "em_usart.h": "c",
+        "em_eusart.h": "c",
+        "efm32g890f128.h": "c"
     }
 }
