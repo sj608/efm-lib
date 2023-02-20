@@ -43,6 +43,41 @@ g  - means go
 ```
 
 ## GDB debugger
+<details><summary>HW Setup</summary>
+
+- a Raspberry Pi 4 is setup as a test station
+- a EFM32 board connected to the RPI4 via USB
+- a Serial to USB cable connected from EFM32 board to the RPI4 via USB
+- JLink Linux package installed
+
+</details>
+
+<details><summary>SW Setup</summary>
+
+- change directory to JLink executable folder
+- run the following command
+   ```
+   ./JLinkRemoteServer -Port 19020
+   ```
+- on local machine run GDBServer, set device, interface and port number
+   ```
+   sudo JLinkGDBServerCL -device EFM32G890F128 -if SWD -port 19020 -nolocalhost
+   ```
+- another windown run arm-none-eabi-gdb
+   ```
+   arm-none-eabi-gdb
+   ```
+- Then connect the remote target using the following command on GDB terminal
+   ```
+   target remote localhost:19020
+   file /path/to/the/file/to/load
+   load
+   ```
+
+</details>
+
+
+
 Steps to running debugging environment
 1. open two terminal
 2. Run JLinkGDBServerCL -device EFM32G890F128
