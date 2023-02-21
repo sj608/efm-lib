@@ -80,7 +80,7 @@ void serial_main(volatile char *input_c)
 		serial_send_string(string_3, (uint8_t)(sizeof(string_3)/sizeof(string_3[0])));
 		uint32_t mem_content = 0;
 		char data_str[4];
-		mem_content = flash_read_address((uint32_t*)(0x0FE08000));
+		mem_content = flash_read_address((uint32_t*)(0x0FE081FE)); //expected value = 0x47 or 71
 		for(uint8_t i = 0; i<4; i++){
 			data_str[i] = mem_content>>(24-(8*i));
 		}
