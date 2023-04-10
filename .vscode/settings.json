@@ -7,6 +7,7 @@
         "em_msc.h": "c",
         "serial.h": "c",
         "efm32g890f128.h": "c",
-        "em_ramfunc.h": "c"
+        "em_ramfunc.h": "c",
+        "flash.h": "c"
     }
 }

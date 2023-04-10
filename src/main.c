@@ -1,6 +1,7 @@
 #include "em_device.h"
 #include "em_chip.h"
 #include "em_cmu.h"
+#include "em_msc.h"
 #include "em_gpio.h"
 #include "serial.h"
 
@@ -11,6 +12,8 @@ void Delay(uint32_t dlyTicks);
 
 int main (void)
 {
+    CHIP_Init();
+    
     CMU_ClockEnable(cmuClock_HFPER, true);
     CMU_ClockEnable(cmuClock_GPIO, true);
     CMU_ClockEnable(cmuClock_USART2, true);

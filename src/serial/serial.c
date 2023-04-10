@@ -57,6 +57,7 @@ void welcom_message(void)
 
 void serial_main(volatile char *input_c)
 {
+	MSC_Status_TypeDef status_er, status_wr;
 	if(*input_c == '1'){
 	    serial_send_string(string_1, (uint8_t)(sizeof(string_1)/sizeof(string_1[0])));
 	    *input_c = 0;
@@ -68,8 +69,8 @@ void serial_main(volatile char *input_c)
 		// MSC_Init();
 		MSC->LOCK = MSC_UNLOCK_CODE;
 		MSC->WRITECTRL = MSC_WRITECTRL_WREN;
-		MSC_ErasePage(target_addr);
-		MSC_WriteWord(target_addr, data, sizeof(data));
+		status_er = MSC_ErasePage(target_addr);
+		status_wr = MSC_WriteWord(target_addr, data, sizeof(data));
 		MSC_Deinit();
 		// flash_init();
 		// flash_erase_page(target_addr);
