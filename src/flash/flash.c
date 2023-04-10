@@ -1,9 +1,11 @@
 #include "flash.h"
 
-uint32_t flash_init(void)
+void flash_init(void)
 {
-    MSC_Init();
-    return MSC->LOCK;
+    /* Write MSC unlock code to enable interface */
+    MSC->LOCK = MSC_UNLOCK_CODE;
+    /* Enable memory controller */
+    MSC->WRITECTRL |= MSC_WRITECTRL_WREN;
 }
 
 
@@ -18,15 +20,34 @@ typedef enum {
 } MSC_Status_TypeDef;
 
 */
-int flash_write(uint32_t *address, const void *data, uint32_t numBytes)
+MSC_RAMFUNC_DEFINITION_BEGIN
+void flash_write(uint32_t address, uint32_t data, uint32_t numBytes)
 {
-    return MSC_WriteWord(address, data, numBytes);
-}
+    // Load ADDRB register with address
+    MSC->ADDRB = address;
+    // Load the address by setting LADDRIM bit in MSC_WRITECMD register
+    MSC->WRITECMD |= MSC_WRITECMD_LADDRIM;
+    //Load Data value
+    MSC->WDATA = data;
+    //write once command
+    MSC->WRITECMD |= MSC_WRITECMD_WRITEONCE;
+    while((MSC->STATUS & MSC_STATUS_BUSY)){}
 
-int flash_erase_page(uint32_t *address)
-{
-    return MSC_ErasePage(address);
 }
+MSC_RAMFUNC_DEFINITION_END
+
+MSC_RAMFUNC_DEFINITION_BEGIN
+void flash_erase_page(uint32_t address)
+{
+    // Load ADDRB register with address
+    MSC->ADDRB = address;
+    // Load the address by setting LADDRIM bit in MSC_WRITECMD register
+    MSC->WRITECMD |= MSC_WRITECMD_LADDRIM;
+    // Erase Page
+    MSC->WRITECMD |= MSC_WRITECMD_ERASEPAGE;
+    while((MSC->STATUS & MSC_STATUS_BUSY)){}
+}
+MSC_RAMFUNC_DEFINITION_END
 
 uint32_t flash_deinit(void)
 {
