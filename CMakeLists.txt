@@ -26,6 +26,7 @@ set(SRC_FILES
         device/system/system_efm32g.c
         
         emlib/src/em_cmu.c
+        emlib/src/em_core.c
         emlib/src/em_msc.c
         emlib/src/em_gpio.c
         emlib/src/em_usart.c

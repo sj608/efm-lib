@@ -23,6 +23,10 @@ typedef enum {
 MSC_RAMFUNC_DEFINITION_BEGIN
 void flash_write(uint32_t address, uint32_t data, uint32_t numBytes)
 {
+    /* Write MSC unlock code to enable interface */
+    MSC->LOCK = MSC_UNLOCK_CODE;
+    /* Enable memory controller */
+    MSC->WRITECTRL |= MSC_WRITECTRL_WREN;
     // Load ADDRB register with address
     MSC->ADDRB = address;
     // Load the address by setting LADDRIM bit in MSC_WRITECMD register
@@ -39,6 +43,10 @@ MSC_RAMFUNC_DEFINITION_END
 MSC_RAMFUNC_DEFINITION_BEGIN
 void flash_erase_page(uint32_t address)
 {
+    /* Write MSC unlock code to enable interface */
+    MSC->LOCK = MSC_UNLOCK_CODE;
+    /* Enable memory controller */
+    MSC->WRITECTRL |= MSC_WRITECTRL_WREN;
     // Load ADDRB register with address
     MSC->ADDRB = address;
     // Load the address by setting LADDRIM bit in MSC_WRITECMD register

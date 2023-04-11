@@ -65,11 +65,14 @@ void serial_main(volatile char *input_c)
 		*input_c = 0;
 		uint32_t target_addr = 0x1FE00;
 		uint32_t data = 698979;
+		CORE_DECLARE_IRQ_STATE;
+		CORE_ENTER_CRITICAL();
 		flash_init();
 		flash_erase_page(target_addr);
 		flash_write(target_addr, data, 1);
 		target_addr = 0x0FE00000;
 		flash_write(target_addr, data, 1);
+		CORE_EXIT_CRITICAL();
 	}else if (*input_c == '3'){
 		*input_c = 0;
 		serial_send_string(string_3, (uint8_t)(sizeof(string_3)/sizeof(string_3[0])));
