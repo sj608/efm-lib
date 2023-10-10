@@ -6,7 +6,7 @@
 #################
 set(CMAKE_SYSTEM_NAME Generic) # Name of the operating system for which CMake to build
 set(CMAKE_SYSTEM_PROCESSOR arm) # Name of the system processor
-set(ARM_TOOLCHAIN_DIR "/opt/homebrew/bin") # set arm toolchain directory path
+set(ARM_TOOLCHAIN_DIR "/usr/local/bin/arm-none-eabi/bin/") # set arm toolchain directory path
 set(BINUTILS_PATH ${ARM_TOOLCHAIN_DIR}) # set binary utility directory path
 
 ####################
