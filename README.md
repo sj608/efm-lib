@@ -3,6 +3,8 @@
 This repository is my personal project to build a custom build system for EFM MCU family
 
 ## Build Steps
+Install arm-none-eabi tool chain from ARM website. After the installation, move the bin files with prefix `arm-none-eabi-` to system bin directory or any directory. Then add the path to the bin files to `$PATH` variable. Make sure to logout and login.
+
 Edit Bin util and arm toolchain directory path for the host platform inside cmake/arm-none-eabi.cmake
 ```
 set(ARM_TOOLCHAIN_DIR "path/to/binutil/") # set arm toolchain directory path
