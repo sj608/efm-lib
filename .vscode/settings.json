@@ -4,6 +4,7 @@
         "em_chip.h": "c",
         "em_device.h": "c",
         "em_gpio.h": "c",
-        "em_msc.h": "c"
+        "em_msc.h": "c",
+        "em_i2c.h": "c"
     }
 }

@@ -59,5 +59,4 @@ void init_i2c(void)
 
     // Initializing the I2C
     I2C_Init(I2C0, &i2cInit);
-
 }
